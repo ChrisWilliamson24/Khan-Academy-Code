@@ -1,0 +1,77 @@
+CREATE TABLE famous_people (id INTEGER PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
+    occupation TEXT,
+    age INTEGER,
+    country TEXT);
+
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Marcus","Rashford","Athlete","25","England");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Ryan","Reynolds","Actor","46","Canada");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Britney","Spears","Singer","41","USA");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Tom","Cruise","Actor","60","America");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Will","Smith","Actor","54","America");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Paul","Rudd","Actor","54","America");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Harry","Kane","Athlete","29","England");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Taylor","Swift","Singer","33","America");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Darwin","Nunez","Athlete","23","Uruguay");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Jeremy","Clarkson","Presenter","63","England");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("LeBron","James","Athlete","38","America");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Jimmy","Fallon","Presenter","48","America");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Justin","Timberlake","Singer","42","America");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Bruno","Fernandes","Athlete","28","England");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Jadon","Sancho","Athlete","23","England");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Andrew","Robertson","Athlete","29","Scotland");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Bukayo","Saka","Athlete","21","England");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Phil","Foden","Athlete","22","England");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Ivan","Toney","Athlete","27","England");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Mohamed","Salah","Athlete","30","Egypt");
+INSERT INTO famous_people (first_name,last_name,occupation,age,country) VALUES ("Bernardo","Silva","Athlete","28","Portugal");
+
+CREATE table Movies  (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actors_id INTEGER,
+    movie TEXT,
+    year INTEGER);
+INSERT INTO Movies (actors_id, movie,year) VALUES (4, "Mission Impossible", "1996");
+INSERT INTO Movies (actors_id, movie,year) VALUES (5, "I Am Legend", "2007");
+INSERT INTO Movies (actors_id, movie,year) VALUES (2, "Deadpool", "2016");
+INSERT INTO Movies (actors_id, movie,year) VALUES (6, "Ant-Man", "2015");
+
+CREATE table team  (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    player_id INTEGER,
+    team TEXT,
+    years_at_club INTEGER);
+    
+INSERT INTO team (player_id, team,years_at_club) VALUES (1,"Man Utd",7);
+INSERT INTO team (player_id, team,years_at_club) VALUES (7,"Tottenham Hotspur",14);
+INSERT INTO team (player_id, team,years_at_club) VALUES (14,"Man Utd",3);
+INSERT INTO team (player_id, team,years_at_club) VALUES (15,"Man Utd",2);
+INSERT INTO team (player_id, team,years_at_club) VALUES (9,"Liverpool",1);
+INSERT INTO team (player_id, team,years_at_club) VALUES (16,"Liverpool",6);
+INSERT INTO team (player_id, team,years_at_club) VALUES (17,"Arsenal",4);
+INSERT INTO team (player_id, team,years_at_club) VALUES (18,"Man City",6);
+INSERT INTO team (player_id, team,years_at_club) VALUES (19,"Brentford",3);
+INSERT INTO team (player_id, team,years_at_club) VALUES (20,"Liverpool",6);
+INSERT INTO team (player_id, team,years_at_club) VALUES (21,"Man City",6);
+
+SELECT famous_people.first_name, famous_people.last_name,Movies.movie 
+FROM famous_people
+LEFT OUTER JOIN Movies
+ON famous_people.id = Movies.actors_id
+WHERE movie IS NOT NULL;
+
+SELECT famous_people.first_name, famous_people.last_name, team.years_at_club
+FROM famous_people
+LEFT OUTER JOIN team
+ON famous_people.id = team.player_id
+WHERE team IS NOT NULL
+ORDER BY years_at_club;
+
+SELECT famous_people.country, AVG(team.years_at_club)
+FROM famous_people
+LEFT OUTER JOIN team
+ON famous_people.id = team.player_id
+WHERE team.years_at_club IS NOT NULL
+GROUP BY country 
+ORDER BY AVG(years_at_club);
