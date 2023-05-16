@@ -1,0 +1,45 @@
+CREATE TABLE User_Details (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    First_name TEXT,
+    Last_name TEXT,
+    age INTEGER);
+    
+CREATE TABLE User_profile (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    following INTEGER,
+    followers INTEGER,
+    posts INTEGER);
+
+
+INSERT INTO User_Details (First_name,Last_name, age) VALUES ("James","Link","18");
+INSERT INTO User_Details (First_name,Last_name, age) VALUES ("Lily","Holland","32");
+INSERT INTO User_Details (First_name,Last_name, age) VALUES ("Lyla","Walker","49");
+INSERT INTO User_Details (First_name,Last_name, age) VALUES ("Maria","Field","21");
+INSERT INTO User_Details (First_name,Last_name, age) VALUES ("Zelda","Faron","20");
+INSERT INTO User_Details (First_name,Last_name, age) VALUES ("Connor","Smith","23");
+INSERT INTO User_Details (First_name,Last_name, age) VALUES ("Bambi","Black","21");
+
+INSERT INTO User_profile (following,followers,posts) VALUES ("360","1000000","8");
+INSERT INTO User_profile (following,followers,posts) VALUES ("5","1","0");
+INSERT INTO User_profile (following,followers,posts) VALUES ("80","1200","68");
+INSERT INTO User_profile (following,followers,posts) VALUES ("1082","98500","108");
+INSERT INTO User_profile (following,followers,posts) VALUES ("45","12","2");
+INSERT INTO User_profile (following,followers,posts) VALUES ("128","34312","118");
+INSERT INTO User_profile (following,followers,posts) VALUES ("600","8","0");
+
+SELECT * FROM User_profile;
+
+UPDATE User_profile SET posts = "9" WHERE id = 1;
+
+SELECT * FROM User_profile;
+
+ALTER TABLE User_profile ADD popularity TEXT default "unknown";
+
+INSERT INTO User_Details (First_name,Last_name, age) VALUES ("Lenny","Clarke","19");
+INSERT INTO User_profile (following,followers,posts,popularity) VALUES ("1200","102000","68","Popular");
+
+SELECT * FROM User_profile;
+
+DELETE FROM User_profile WHERE followers < 10000;
+
+SELECT * FROM User_profile;
